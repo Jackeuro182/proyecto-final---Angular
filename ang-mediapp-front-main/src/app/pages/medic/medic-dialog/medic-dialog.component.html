@@ -1,0 +1,45 @@
+<mat-dialog-content>
+  <mat-toolbar>
+    <span>Medic Dialog</span>
+  </mat-toolbar>
+
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Primary Name" [(ngModel)]="medic.primaryName" (input)="medic.primaryName = medic.primaryName.toUpperCase()" (keypress)="ValidaLetras($event)" required/>
+      <div *ngIf="medic.primaryName == null || medic.primaryName == ''  ">
+        Escriba su nombre.
+      </div>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Surname" [(ngModel)]="medic.surname" (input)="medic.surname = medic.surname.toUpperCase()" required (keypress)="ValidaLetras($event)" />
+      <div *ngIf="medic.surname == null || medic.surname == ''  ">
+        Escriba su apellido.
+      </div>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input   matInput placeholder="CodMed" [(ngModel)]="medic.codMedic" required  (keypress)="ValidaNumeros($event)"  />
+      <div *ngIf="medic.codMedic == null || medic.codMedic == ''  ">
+        Escriba su cedula de medico.
+      </div>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Photo" [(ngModel)]="medic.photo" required />
+      <div *ngIf="medic.codMedic == null || medic.codMedic == ''  ">
+        agrege una foto.
+      </div>
+    </mat-form-field>
+
+    <img
+      mat-card-image
+      [src]="medic.photo"
+      alt="Photo of Medic"
+      *ngIf="medic.photo"
+    />
+  </div>
+
+  <button mat-raised-button color="primary" (click)="operate()">Done</button>
+  <button mat-raised-button color="accent" (click)="close()">Cancel</button>
+</mat-dialog-content>
